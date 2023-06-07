@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+# MyForm Componet
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The `MyForm` component is a React form component that uses `react-hook-form` for form validation and submission. It allows users to enter their name, email, and password and displays the submitted data on the screen.
 
-## Available Scripts
+## Usage
 
-In the project directory, you can run:
+1. Import the necessary dependencies:
 
-### `npm start`
+```jsx
+import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. Define the type for the form values:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```jsx
+type FormValues = {
+  name: string,
+  email: string,
+  password: string,
+};
+```
 
-### `npm test`
+3. implement the MyForm component
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```jsx
+const MyForm: React.FC = () => {
+  // Initialize the form using useForm from react-hook-form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+    reset
+  } = useForm<FormValues>();
 
-### `npm run build`
+  // Create a state variable to store the submitted data
+  const [dataList, setDataList] = useState<FormValues[]>([]);
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  // Get the value of the 'name' field
+  const nameValue = watch("name");
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  // Handle form submission
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    setDataList((prevDataList) => [...prevDataList, data]);
+    reset(); // Reset the form fields after submission
+  };
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  // Render the form and the submitted data
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <!-- Form inputs -->
+      ...
 
-### `npm run eject`
+      <!-- Submit button -->
+      ...
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+      <!-- Display name value -->
+      ...
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+      <!-- Display submitted data -->
+      ...
+    </form>
+  );
+};
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Feel free to modify the description as needed to fit your specific use case.

@@ -12,6 +12,8 @@
     "@types/react-dom": "^18.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.44.3",
+    "react-plop-gen-component": "^1.1.4",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -20,6 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "generate": "yarn plop --plopfile ./node_modules/react-plop-gen-component/plopfile.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -39,5 +44,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "prettier": "^2.8.8"
   }
 }
