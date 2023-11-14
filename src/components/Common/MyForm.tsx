@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-type FormValues = {
+interface FormValues {
   name: string;
   email: string;
   password: string;
-};
+}
 
 const MyForm: React.FC = () => {
   const {
@@ -22,7 +22,7 @@ const MyForm: React.FC = () => {
     setDataList((prevDataList) => [...prevDataList, data]);
     reset();
   };
-
+  /* ******************************** rendering ******************************* */
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
