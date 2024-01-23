@@ -8,7 +8,7 @@ type TFormValues = {
   password: string;
   phoneNumber: number;
 };
-
+// Form component
 const MyForm: React.FC = () => {
   const {
     register,
@@ -61,8 +61,8 @@ const MyForm: React.FC = () => {
           type="phoneNumber"
           id="phoneNumber"
           {...register("phoneNumber", {
-            required: "Number is required ",
-            valueAsNumber: true
+            valueAsNumber: true,
+            required: "Number is required "
           })}
         />
       </div>
@@ -76,6 +76,7 @@ const MyForm: React.FC = () => {
               <p>Name: {data.name}</p>
               <p>Email: {data.email}</p>
               <p>Password: {data.password}</p>
+              <p>phoneNumber:{data.phoneNumber}</p>
             </div>
           ))}
         </div>
