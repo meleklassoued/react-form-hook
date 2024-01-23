@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-interface FormValues {
+// type definitions
+type TFormValues = {
   name: string;
   email: string;
   password: string;
-}
+  phoneNumber: number;
+};
 
 const MyForm: React.FC = () => {
   const {
@@ -14,14 +16,15 @@ const MyForm: React.FC = () => {
     formState: { errors },
     watch,
     reset
-  } = useForm<FormValues>();
-  const [dataList, setDataList] = useState<FormValues[]>([]);
+  } = useForm<TFormValues>();
+  const [dataList, setDataList] = useState<TFormValues[]>([]);
   const nameValue = watch("name");
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<TFormValues> = (data) => {
     // Perform form submission logic here
     setDataList((prevDataList) => [...prevDataList, data]);
     reset();
   };
+
   /* ******************************** rendering ******************************* */
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -51,6 +54,17 @@ const MyForm: React.FC = () => {
           {...register("password", { required: "Password is required" })}
         />
         {errors.password && <div>{errors.password.message}</div>}
+      </div>
+      <div>
+        <label htmlFor="phoneNumber">PhoneNumber</label>
+        <input
+          type="phoneNumber"
+          id="phoneNumber"
+          {...register("phoneNumber", {
+            required: "Number is required ",
+            valueAsNumber: true
+          })}
+        />
       </div>
       <div>
         <button type="submit">Submit</button>
